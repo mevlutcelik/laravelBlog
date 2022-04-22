@@ -2,12 +2,14 @@
 @section('title', '- Profil')
 @section('content')
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-light py-4 mb-5">
-            <div class="container d-flex">
-                <li class="breadcrumb-item"><a href="{{route('home.index')}}">Anasayfa</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Profilim</li>
+        <div class="bg-light">
+            <div class="container">
+                <ol class="breadcrumb bg-light">
+                    <li class="breadcrumb-item"><a href="{{route('home.index')}}">Anasayfa</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bilgilerim</li>
+                </ol>
             </div>
-        </ol>
+        </div>
     </nav>
     <div class="container">
         <h1 class="mt-5 mb-4">Bilgilerim</h1>
@@ -16,7 +18,7 @@
                 <tbody>
                 <tr>
                     <th scope="row">İsim</th>
-                    <td>{!! auth()->user()->name ?? '<span class="text-secondary">Henüz kayıt edilmedi!</span>' !!}</td>
+                    <td>{{ auth()->user()->name ?? '-' }}</td>
                 </tr>
                 <tr>
                     <th scope="row">E-posta</th>

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileEditController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,15 @@ Route::group(['middleware' => ['guest']], function() {
 Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
+
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
     Route::get('/profile-edit', [ProfileEditController::class, 'show'])->name('profile.edit');
+    Route::post('/profile-edit', [ProfileEditController::class, 'edit'])->name('profile.perform');
+
+    Route::get('/posts', [PostsController::class, 'show'])->name('post.show');
+
+    Route::get('/posts-new', [PostsController::class, 'newPost'])->name('post.new');
+    Route::post('/post-new', [PostsController::class, 'newPostSubmit'])->name('post.new.perform');
 
 });

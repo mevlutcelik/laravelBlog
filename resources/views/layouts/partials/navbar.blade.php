@@ -11,12 +11,15 @@
                     <a href="{{route('home.index')}}" class="nav-link">Anasayfa
                         <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#!">Yazılar</a>
+                <li class="nav-item {{Route::is('post.show') ? 'active' : null}}">
+                    <a class="nav-link" href="{{route('post.show')}}">Yazılar</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 @auth
+                <li class="nav-item {{Route::is('post.new') ? 'active' : null}}">
+                    <a class="nav-link mr-3" href="{{route('post.new')}}">Yeni yazı ekle</a>
+                </li>
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false">
@@ -24,6 +27,7 @@
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{route('profile.show')}}">Bilgilerim</a>
+                            <a class="dropdown-item" href="{{route('post.new')}}">Yeni yazı ekle</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger" href="{{route('logout.perform')}}">Çıkış yap</a>
                         </div>
