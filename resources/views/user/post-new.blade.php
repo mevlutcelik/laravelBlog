@@ -15,29 +15,32 @@
 
         <h1 class="mt-5 mb-4">Yeni yazı ekle</h1>
         @if (Session::has('msg'))
-            <script>
-                setTimeout(alertHide, 1500);
-                function alertHide() {
-                    document.querySelector("#alert-message").style.display = "none";
-                }
-            </script>
-            <p id="alert-message" class="alert alert-{{ Session::get('type') }}">{{ Session::get('msg') }}</p>
+            @include('message')
         @endif
         <form action="{{ route('post.new.perform') }}" method="post">
             @csrf
             <div class="form-group">
                 <label for="title">Yazı başlığı</label>
-                <input type="text" name="title" class="form-control" id="title"
+                <input type="text" name="title" placeholder="Yazı başlığı" class="form-control @if ($errors->has('title')) in-valid @endif" id="title"
                     value="{{ old('title') }}">
+                @if ($errors->has('title'))
+                    <span class="text-danger text-left">{{ $errors->first('title') }}</span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="desc">Yazı açıklaması</label>
-                <input type="text" name="desc" class="form-control" id="desc"
+                <input type="text" name="desc" placeholder="Yazı açıklaması" class="form-control @if ($errors->has('desc')) in-valid @endif" id="desc"
                     value="{{ old('desc') }}">
+                @if ($errors->has('desc'))
+                    <span class="text-danger text-left">{{ $errors->first('desc') }}</span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="postContent">Yazı</label>
-                <textarea type="text" name="postContent" class="form-control" id="content">{{ old('postContent')}}</textarea>
+                <textarea type="text" style="min-height: 4rem;" placeholder="Yazı içeriği" name="postContent" class="form-control @if ($errors->has('postContent')) in-valid @endif" id="postContent">{{ old('postContent')}}</textarea>
+                @if ($errors->has('postContent'))
+                    <span class="text-danger text-left">{{ $errors->first('postContent') }}</span>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary mt-2">Ekle</button>
         </form>

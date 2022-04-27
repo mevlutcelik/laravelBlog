@@ -11,8 +11,11 @@
                     <a href="{{route('home.index')}}" class="nav-link">Anasayfa
                         <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item {{Route::is('post.show') ? 'active' : null}}">
+                <li class="nav-item {{Route::is('post.show') || Route::is('post.show.all') ? 'active' : null}}">
                     <a class="nav-link" href="{{route('post.show')}}">Yazılar</a>
+                </li>
+                <li class="nav-item {{Route::is('author.show') ? 'active' : null}}">
+                    <a class="nav-link" href="{{route('author.show')}}">Yazarlar</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -26,6 +29,7 @@
                             {{auth()->user()->username}}
                         </button>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/author/{{auth()->user()->username}}">Profilim</a>
                             <a class="dropdown-item" href="{{route('profile.show')}}">Bilgilerim</a>
                             <a class="dropdown-item" href="{{route('post.new')}}">Yeni yazı ekle</a>
                             <div class="dropdown-divider"></div>

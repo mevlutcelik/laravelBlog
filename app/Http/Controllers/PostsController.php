@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\NewPostRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,26 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
     public function show(){
-        return view('user.post');
+        $posts = Post::orderBy('id', 'DESC')->limit(10)->get();
+        return view('user.post')->with([
+            'posts' => $posts
+        ]);
+    }
+
+    public function postAll(){
+        $posts = Post::orderBy('id', 'DESC')->get();
+        return view('user.post')->with([
+            'posts' => $posts
+        ]);
+    }
+
+    public function singlePost($postLink){
+        $post = Post::whereLink($postLink)->firstOrFail();
+        $comments = Comment::whereWhichPage($postLink)->get();
+        return view('user.single-post')->with([
+            'post' => $post,
+            'comments' => $comments
+        ]);
     }
 
     public function newPost(){
@@ -96,13 +116,10 @@ class PostsController extends Controller
             $str = trim($str, $options['delimiter']);
             return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
         }
-        DB::table('posts')->insert([
-            'title' => $request->title,
-            'desc' => $request->desc,
-            'content' => $request->postContent,
-            'author' => Auth::user()->username,
-            'link' => permalink($request->title)
-        ]);
+        $data = $request->validated();
+        $data['link'] = permalink($request->title . ' - ' . rand(1000, 9999));
+        $data['author'] = Auth::user()->username;
+        Post::create($data);
         return redirect(route('post.show'))->with([
             'type' => 'success',
             'msg' => 'Yazı başarılı bir şekilde eklendi.'

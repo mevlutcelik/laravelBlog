@@ -17,7 +17,7 @@ class ProfileEditController extends Controller
         $user->save();
         return back()->with([
             'type' => 'success',
-            'msg' => 'Profil başarılı bir şekilde kayıt edildi.'
+            'msg' => 'Profil başarılı bir şekilde güncellendi.'
         ]);
     }
 }

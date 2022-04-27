@@ -6,29 +6,40 @@
             <div class="container">
                 <ol class="breadcrumb bg-light">
                     <li class="breadcrumb-item"><a href="{{route('home.index')}}">Anasayfa</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Yazılar</li>
+                    @if (Route::is('post.show.all'))
+                    <li class="breadcrumb-item"><a href="{{route('post.show')}}">Yazılar</a></li>
+                    @endif
+                    <li class="breadcrumb-item active" aria-current="page">@if (Route::is('post.show.all'))Tüm @endif Yazılar</li>
                 </ol>
             </div>
         </div>
     </nav>
     <div class="container">
         @if (Session::has('msg'))
-            <script>
-                setTimeout(alertHide, 1500);
-                function alertHide() {
-                    document.querySelector("#alert-message").style.display = "none";
-                }
-            </script>
-            <p id="alert-message" class="alert alert-{{ Session::get('type') }}">{{ Session::get('msg') }}</p>
+            @include('message')
         @endif
-        <h1 class="mt-5 mb-4">Yazılar</h1>
-        <div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/200/100" class="card-img-top" alt="Card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h1 class="mt-5 mb-3">@if (Route::is('post.show.all'))Tüm @endif Yazılar</h1>
+        @if (Route::is('post.show'))
+            <h5 class="mb-4">Son 10 yazı</h5>
+            <div class="mb-5">
+                <a href="{{route('post.show.all')}}">Tüm yazıları göster</a>
             </div>
-          </div>
+        @endif
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5">
+            @foreach($posts as $post)
+                <div class="p-3">
+                    <div class="card col" style="padding: 0">
+                        <div class="card-body d-flex flex-column justify-content-between" style="height: 16rem">
+                            <h5 class="card-title text-primary">{{$post->title}}</h5>
+                            <p class="card-text" style="text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;">{{$post->desc}}</p>
+                            <small class="card-text text-secondary">Yazar: <a
+                                    href="#!"><span>@</span>{{$post->author}}</a></small><br/>
+                            <a href="/post/{{$post->link}}" class="btn btn-secondary mt-3">Devamını oku</a>
+                            <!--<a href="{{route('post.single', ['link' => $post->link])}}" class="btn btn-primary mt-3">Devamını oku</a>-->
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
