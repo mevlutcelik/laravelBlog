@@ -80,10 +80,10 @@
                                 <a href="/post/{{$post->link}}"><h5
                                         class="card-title text-primary">{{$post->title}}</h5></a>
                                 <p class="card-text"
-                                   style="text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;">{{$post->desc}}</p>
+                                   style="line-height: initial;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;">{{$post->desc}}</p>
                                 <small class="card-text text-secondary">Yazar: <a
                                         href="#!"><span>@</span>{{$post->author}}</a></small><br/>
-                                <a href="/post/{{$post->link}}" class="btn btn-secondary mt-3">Devamını oku</a>
+                                <a href="/post/{{$post->link}}" class="btn btn-secondary mt-3">Yazıyı oku</a>
                                 <!--<a href="{{route('post.single', ['link' => $post->link])}}" class="btn btn-primary mt-3">Devamını oku</a>-->
                             </div>
                         </div>

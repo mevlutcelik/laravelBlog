@@ -16,6 +16,7 @@
         <div class="table-responsive-sm">
             <table class="table table-striped">
                 <tbody>
+                <tbody>
                 <tr>
                     <th scope="row">İsim</th>
                     <td>{{ auth()->user()->name ?? '-' }}</td>
