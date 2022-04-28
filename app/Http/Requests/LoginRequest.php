@@ -26,7 +26,8 @@ class LoginRequest extends FormRequest
     {
         return [
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'remember_token' => 'nullable'
         ];
     }
     public function getCredentials()

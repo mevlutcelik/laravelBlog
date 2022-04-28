@@ -6,18 +6,12 @@ use App\Models\Comment;
 use App\Models\Post;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use function GuzzleHttp\Promise\all;
 
 class PostsController extends Controller
 {
     public function show(){
         $posts = Post::orderBy('id', 'DESC')->limit(10)->get();
-        return view('user.post')->with([
-            'posts' => $posts
-        ]);
-    }
-
-    public function postAll(){
-        $posts = Post::orderBy('id', 'DESC')->get();
         return view('user.post')->with([
             'posts' => $posts
         ]);

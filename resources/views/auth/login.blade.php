@@ -26,7 +26,7 @@
 
         <div class="form-group mb-3">
             <label for="remember">Beni hatırla</label>
-            <input id="remember" type="checkbox" name="remember" value="1">
+            <input id="remember" type="checkbox" name="remember_token" value="1">
         </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş yap</button>

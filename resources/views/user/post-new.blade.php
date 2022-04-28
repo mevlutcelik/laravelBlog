@@ -1,5 +1,6 @@
 @extends('layouts.app-master')
 @section('title', '- Yeni yazı ekle')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 @section('content')
     <nav aria-label="breadcrumb">
         <div class="bg-light">
@@ -45,4 +46,11 @@
             <button type="submit" class="btn btn-primary mt-2">Ekle</button>
         </form>
     </div>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#postContent' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

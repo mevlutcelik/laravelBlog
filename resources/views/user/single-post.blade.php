@@ -1,15 +1,6 @@
 @extends('layouts.app-master')
 @section('title', '- Yazılar')
 @section('content')
-    <style>
-        #content:first-letter {
-            font-size: 4.2rem;
-            float: left;
-            line-height: 0.75;
-            margin: 0.25rem 1rem 0.25rem 0.25rem;
-            font-family: serif;
-        }
-    </style>
     <nav aria-label="breadcrumb">
         <div class="bg-light">
             <div class="container">
@@ -30,7 +21,7 @@
         </p>
         <p class="mb-4"><strong>Yayınlanma tarihi: </strong>{{$post->created_at}}</p>
         <p id="content" class="mb-5">
-            {!!nl2br($post->postContent)!!}
+            {!!$post->postContent!!}
         </p>
         <div class="card p-4" style="margin: 6rem 0;">
             <h4 class="mb-4">Yorum ekle</h4>

@@ -28,7 +28,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 // Post
 Route::get('/posts', [PostsController::class, 'show'])->name('post.show');
 Route::get('/post', [PostsController::class, 'show'])->name('post.show');
-Route::get('/post/all', [PostsController::class, 'postAll'])->name('post.show.all');
 Route::get('/post/{postLink?}', [PostsController::class, 'singlePost'])->name('post.single');
 
 // Comment
