@@ -33,6 +33,7 @@ Route::get('/post/{postLink?}', [PostsController::class, 'singlePost'])->name('p
 
 // Comment
 Route::post('/post/comment-add', [CommentController::class, 'commentAdd'])->name('comment.add');
+Route::post('post/comment-answer-add', [CommentController::class, 'commentAnswerAdd'])->name('comment.answer.add');
 
 // Author
 Route::get('/authors', [AuthorController::class, 'show'])->name('author.show');

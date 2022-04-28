@@ -30,7 +30,7 @@
                 <div class="p-3">
                     <div class="card col" style="padding: 0">
                         <div class="card-body d-flex flex-column justify-content-between" style="height: 16rem">
-                            <h5 class="card-title text-primary">{{$post->title}}</h5>
+                            <a href="/post/{{$post->link}}"><h5 class="card-title text-primary">{{$post->title}}</h5></a>
                             <p class="card-text" style="text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;">{{$post->desc}}</p>
                             <small class="card-text text-secondary">Yazar: <a
                                     href="#!"><span>@</span>{{$post->author}}</a></small><br/>

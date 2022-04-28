@@ -35,6 +35,8 @@ class Comment extends Model
         'which_page',
         'commentContent',
         'who_shared',
-        'likes'
+        'likes',
+        'answer',
+        'commentId'
     ];
 }

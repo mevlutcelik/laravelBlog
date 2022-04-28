@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->string('commentContent');
             $table->string('who_shared');
             $table->integer('likes');
+            $table->boolean('answer')->default(false);
+            $table->integer('commentId')->nullable();
             $table->timestamps();
         });
     }

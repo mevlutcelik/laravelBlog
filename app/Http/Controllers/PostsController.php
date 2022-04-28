@@ -25,10 +25,12 @@ class PostsController extends Controller
 
     public function singlePost($postLink){
         $post = Post::whereLink($postLink)->firstOrFail();
-        $comments = Comment::whereWhichPage($postLink)->get();
+        $comments = Comment::whereWhichPage($postLink)->whereAnswer(false)->get();
+        $commentsAnswers = Comment::whereWhichPage($postLink)->whereAnswer(true)->get();
         return view('user.single-post')->with([
             'post' => $post,
-            'comments' => $comments
+            'comments' => $comments,
+            'commentAnswers' => $commentsAnswers
         ]);
     }
 
